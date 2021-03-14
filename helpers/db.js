@@ -14,8 +14,8 @@ module.exports = class DB {
         for(const [key, val] of Object.entries(cfg.databases)){
             val.hrPool.cs = val.hrPool.cs.join('\n');
             this.pools[key] = await oracledb.createPool(val.hrPool);
+            log.info(`DB ready ${key}`);
         }
-        log.info('READY');
     }
 
     async getConnection(dbname) {
